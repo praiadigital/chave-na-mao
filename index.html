@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chave na Mão — Da Proposta até a Chave</title>
+<meta name="description" content="Jornada interativa da compra do imóvel no litoral: da proposta à escritura, com prazos, custos e checklist.">
+<style>body{font-family:system-ui;margin:0;background:#f0f9ff;color:#0c4a6e}header{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;padding:2rem 1rem;text-align:center}header a{color:#bae6fd}main{max-width:720px;margin:1.5rem auto;padding:0 1rem}.card{background:#fff;border-radius:12px;padding:1.2rem;margin:1rem 0;box-shadow:0 2px 8px rgba(2,132,199,.15)}.step{display:flex;gap:.8rem;padding:.7rem;border-left:4px solid #bae6fd;margin:.5rem 0;background:#f8fdff;border-radius:0 8px 8px 0;cursor:pointer}.step.done{border-color:#22c55e;opacity:.65}.step b{min-width:26px}.prog{height:12px;background:#e0f2fe;border-radius:999px;overflow:hidden}.prog>div{height:100%;background:#22c55e;transition:width .3s}footer{text-align:center;font-size:.85rem;padding:2rem 1rem;color:#0369a1}.net{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.8rem}.net a{background:#e0f2fe;color:#075985;padding:.3rem .6rem;border-radius:999px;text-decoration:none;font-size:.8rem}</style>
+</head>
+<body>
+<header><h1>🔑 Chave na Mão</h1><p>A jornada completa da compra do seu imóvel no litoral, passo a passo.</p><a href="https://praia.digital">← praia.digital</a> · <a href="https://praia.digital/apps">Hub de apps</a></header>
+<main>
+<div class="card"><div class="prog"><div id="pg" style="width:0"></div></div><p id="pct" style="text-align:center;font-weight:700"></p><div id="list"></div></div>
+<div class="card"><h3>Ferramentas da jornada</h3><p>🧭 <a href="https://praia.digital/plano-litoral">Plano Litoral — junte a entrada</a><br>🧮 <a href="https://praia.digital/calculadora-custos">Calculadora de Custos — ITBI e cartório</a><br>🏖️ <a href="https://praia.digital/praiascore">PraiaScore antes da proposta</a></p></div>
+</main>
+<footer><b>Rede Praia Digital</b><div class="net"><a href="https://praia.digital/apps">Hub</a><a href="https://praia.digital/match-praia">Match Praia</a><a href="https://praia.digital/radar-precos">Radar de Preços</a><a href="https://praia.digital/vizinho-digital">Vizinho Digital</a><a href="https://praia.digital/eco-praia">Eco Praia</a><a href="https://praia.digital/sossego-index">Sossego Index</a><a href="https://praia.digital/alerta-ofertas">Alerta de Ofertas</a><a href="https://praia.digital/simulador-credito">Simulador de Crédito</a></div><p>© 2026 Praia Digital</p></footer>
+<script>
+const S=[['💰','Simular crédito e definir orçamento','Use FGTS e compare taxas no Simulador de Crédito.'],['💙','Encontrar o imóvel','Match Praia + PraiaScore para shortlist.'],['📝','Proposta e reserva','Sinal de 1–2% para tirar o imóvel do mercado.'],['🔍','Due diligence','Matrícula, certidões, IPTU e Eco Praia (risco de alagamento).'],['🏦','Aprovação do financiamento','Banco avalia você e o imóvel (30–45 dias).'],['✍️','Contrato e escritura','Cartório: ITBI pago antes do registro.'],['🔑','Registro e chaves!','Registro no RGI = imóvel seu. Bem-vindo ao litoral!']];
+const K='chave-st';let st=JSON.parse(localStorage.getItem(K)||'[]');
+function render(){
+ document.getElementById('list').innerHTML=S.map((s,i)=>'<div class="step'+(st[i]?' done':'')+'" onclick="tg('+i+')"><b>'+s[0]+'</b><div><b>'+(i+1)+'. '+s[1]+'</b><br><small>'+s[2]+'</small></div></div>').join('');
+ const p=Math.round(st.filter(Boolean).length/S.length*100);
+ document.getElementById('pg').style.width=p+'%';document.getElementById('pct').textContent=p===100?'🎉 Chave na mão!':p+'% da jornada concluída';
+}
+function tg(i){st[i]=!st[i];localStorage.setItem(K,JSON.stringify(st));render();}
+render();
+</script>
+</body>
+</html>
